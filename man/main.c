@@ -18,6 +18,7 @@ int main(void)
         free(line);
         i++;
     }
+    printf("line %d = %s", i, line);printf("line %d = %s", i, line);
     close(fd);
     return (0);
 }

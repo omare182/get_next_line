@@ -2,7 +2,7 @@
 
 static char	*ft_newl(char *s)
 {
-	char	*str;
+	char	*rest;
 	size_t	i;
 	size_t	j;
 
@@ -11,38 +11,40 @@ static char	*ft_newl(char *s)
 		i++;
 	if (!s[i] || !s[i + 1])
 		return (free(s), NULL);
-	str = malloc(ft_strlen(s + i + 1) + 1);
-	if (!str)
+	rest = malloc(ft_strlen(s + i + 1) + 1);
+	if (!rest)
 		return (free(s), NULL);
 	j = 0;
 	i++;
 	while (s[i])
-		str[j++] = s[i++];
-	str[j] = '\0';
+		rest[j++] = s[i++];
+	rest[j] = '\0';
 	free(s);
-	return (str);
+	return (rest);
 }
 
 static char	*ft_read(char *line, int fd)
 {
-	char	*str;
+	char	*buf;
 	ssize_t	r;
 
-	str = malloc(BUFFER_SIZE + 1);
-	if (!str)
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
 		return (free(line), NULL);
 	r = 1;
 	while (r > 0 && !ft_strchr(line, '\n'))
 	{
-		r = read(fd, str, BUFFER_SIZE);
+		r = read(fd, buf, BUFFER_SIZE);
 		if (r < 0)
-			return (free(str), free(line), NULL);
-		str[r] = '\0';
-		line = ft_strjoin(line, str);
+			return (free(buf), free(line), NULL);
+        if (r == 0)
+            return (free(buf), free(line), NULL);
+		buf[r] = '\0';
+		line = ft_strjoin(line, buf);
 		if (!line)
-			return (free(str), free(line), NULL);
+			return (free(buf), NULL);
 	}
-	free(str);
+	free(buf);
 	return (line);
 }
 
@@ -52,7 +54,7 @@ static char	*ft_str_return(char *str)
 	size_t	len;
 	size_t	i;
 
-	if (!str[0])
+	if (!str)
 		return (NULL);
 	len = 0;
 	while (str[len] && str[len] != '\n')
@@ -61,7 +63,7 @@ static char	*ft_str_return(char *str)
 		len++;
 	s = malloc(len + 1);
 	if (!s)
-		return (free(str), NULL);
+		return (NULL);
 	i = -1;
 	while (++i < len)
 		s[i] = str[i];
