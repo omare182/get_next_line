@@ -19,5 +19,5 @@ char	*ft_strjoin(char *s1, char *s2);
 
 
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line_bonus(int fd);
 #endif

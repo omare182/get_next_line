@@ -35,9 +35,9 @@ static char	*ft_read(char *line, int fd)
 	while (r > 0 && !ft_strchr(line, '\n'))
 	{
 		r = read(fd, buf, BUFFER_SIZE);
-		if (r < 0)
-			return (free(buf), free(line), NULL);
-        if (r == 0)
+		if (r == 0)
+			return (free(buf), line);
+        if (r < 0)
             return (free(buf), free(line), NULL);
 		buf[r] = '\0';
 		line = ft_strjoin(line, buf);

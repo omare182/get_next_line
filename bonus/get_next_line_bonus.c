@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_newl(char *s)
 {
@@ -35,9 +35,9 @@ static char	*ft_read(char *line, int fd)
 	while (r > 0 && !ft_strchr(line, '\n'))
 	{
 		r = read(fd, buf, BUFFER_SIZE);
-		if (r < 0)
-			return (free(buf), free(line), NULL);
-        if (r == 0)
+		if (r == 0)
+			return (free(buf), line);
+        if (r < 0)
             return (free(buf), free(line), NULL);
 		buf[r] = '\0';
 		line = ft_strjoin(line, buf);
@@ -71,19 +71,22 @@ static char	*ft_str_return(char *str)
 	return (s);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_bonus(int fd)
 {
-	static char	*line;
+	static char	line[1024];
 	char		*str;
+	size_t i;
 
+	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = ft_read(line, fd);
+	line = ft_read(&line, fd);
 	if (!line)
 		return (NULL);
-	str = ft_str_return(line);
+	str = ft_str_return(&line);
 	if (!str)
 		return (free(line), line = NULL, NULL);
-	line = ft_newl(line);
+	line[i] = ft_newl(&line);
+	i++;
 	return (str);
 }
