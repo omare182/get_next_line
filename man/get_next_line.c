@@ -28,7 +28,7 @@ static char	*ft_read(char *line, int fd)
 	char	*buf;
 	ssize_t	r;
 
-	buf = malloc(BUFFER_SIZE + 1);
+	buf = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buf)
 		return (free(line), NULL);
 	r = 1;
@@ -76,7 +76,7 @@ char	*get_next_line(int fd)
 	static char	*line;
 	char		*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || (size_t)BUFFER_SIZE > (SIZE_MAX - 1))
 		return (NULL);
 	line = ft_read(line, fd);
 	if (!line)

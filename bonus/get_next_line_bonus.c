@@ -28,7 +28,7 @@ static char	*ft_read(char *line, int fd)
 	char	*buf;
 	ssize_t	r;
 
-	buf = malloc(BUFFER_SIZE + 1);
+	buf = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buf)
 		return (free(line), NULL);
 	r = 1;
@@ -71,22 +71,20 @@ static char	*ft_str_return(char *str)
 	return (s);
 }
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
-	static char	line[1024];
+	static char	*line[1024];
 	char		*str;
-	size_t i;
+	// size_t	i;
 
-	i = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || (size_t)BUFFER_SIZE > (SIZE_MAX - 1) || fd > 1024)
 		return (NULL);
-	line = ft_read(&line, fd);
-	if (!line)
+	line[fd] = ft_read(line[fd], fd);
+	if (!line[fd])
 		return (NULL);
-	str = ft_str_return(&line);
+	str = ft_str_return(line[fd]);
 	if (!str)
-		return (free(line), line = NULL, NULL);
-	line[i] = ft_newl(&line);
-	i++;
+		return (free(line[fd]), line[fd] = NULL, NULL);
+	line[fd] = ft_newl(line[fd]);
 	return (str);
 }

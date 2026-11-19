@@ -7,7 +7,7 @@ int main(void)
     char *line;
     int i;
 
-    fd = open("t2", O_RDONLY);
+    fd = open("file", O_RDONLY);
     if (fd < 0)
         return (1);
 
