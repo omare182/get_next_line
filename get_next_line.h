@@ -6,7 +6,7 @@
 /*   By: omel-kas <omel-kas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 12:28:31 by omel-kas          #+#    #+#             */
-/*   Updated: 2026/11/21 12:32:50 by omel-kas         ###   ########.fr       */
+/*   Updated: 2026/11/21 12:39:27 by omel-kas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
-# include <stdio.h>
 
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);

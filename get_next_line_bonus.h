@@ -6,7 +6,7 @@
 /*   By: omel-kas <omel-kas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 12:33:01 by omel-kas          #+#    #+#             */
-/*   Updated: 2026/11/21 12:34:42 by omel-kas         ###   ########.fr       */
+/*   Updated: 2026/11/21 12:39:24 by omel-kas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
+#  define BUFFER_SIZE 42
 
 # endif
 
@@ -22,7 +22,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
-# include <stdio.h>
 
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
