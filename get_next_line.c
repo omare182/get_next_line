@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omel-kas <omel-kas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/21 12:26:19 by omel-kas          #+#    #+#             */
+/*   Updated: 2026/11/21 12:26:28 by omel-kas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 static char	*ft_newl(char *s)
@@ -37,8 +49,8 @@ static char	*ft_read(char *line, int fd)
 		r = read(fd, buf, BUFFER_SIZE);
 		if (r == 0)
 			return (free(buf), line);
-        if (r < 0)
-            return (free(buf), free(line), NULL);
+		if (r < 0)
+			return (free(buf), free(line), NULL);
 		buf[r] = '\0';
 		line = ft_strjoin(line, buf);
 		if (!line)

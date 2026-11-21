@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omel-kas <omel-kas@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/21 12:26:49 by omel-kas          #+#    #+#             */
+/*   Updated: 2026/11/21 12:28:14 by omel-kas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 static char	*ft_newl(char *s)
@@ -37,8 +49,8 @@ static char	*ft_read(char *line, int fd)
 		r = read(fd, buf, BUFFER_SIZE);
 		if (r == 0)
 			return (free(buf), line);
-        if (r < 0)
-            return (free(buf), free(line), NULL);
+		if (r < 0)
+			return (free(buf), free(line), NULL);
 		buf[r] = '\0';
 		line = ft_strjoin(line, buf);
 		if (!line)
@@ -75,9 +87,9 @@ char	*get_next_line(int fd)
 {
 	static char	*line[1024];
 	char		*str;
-	// size_t	i;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || (size_t)BUFFER_SIZE > (SIZE_MAX - 1) || fd > 1024)
+	if (fd < 0 || BUFFER_SIZE <= 0
+		|| (size_t)BUFFER_SIZE > (SIZE_MAX - 1) || fd >= 1024)
 		return (NULL);
 	line[fd] = ft_read(line[fd], fd);
 	if (!line[fd])
