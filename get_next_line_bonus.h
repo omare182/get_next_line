@@ -6,7 +6,7 @@
 /*   By: omel-kas <omel-kas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 12:33:01 by omel-kas          #+#    #+#             */
-/*   Updated: 2026/11/21 12:39:24 by omel-kas         ###   ########.fr       */
+/*   Updated: 2026/11/26 13:47:27 by omel-kas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 # endif
 
-# include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
